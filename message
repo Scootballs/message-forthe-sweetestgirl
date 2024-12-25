@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message for My Girlfriend</title>
+    <link href="https://fonts.googleapis.com/css2?family=White+Star&display=swap" rel="stylesheet"> <!-- Add White Star font -->
+    <style>
+        body {
+            font-family: 'White Star', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('crumpled-paper.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(5px); /* Adding blur effect to the background */
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease;
+            width: 300%; /* Set to 3 slides */
+        }
+
+        .slide {
+            width: 100%;
+            height: 100vh;
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .notebook-page {
+            position: relative;
+            background-image: url('torn-notebook.png'); /* Torn paper background */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 600px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .notebook-text {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            font-family: 'White Star', sans-serif;
+            max-width: 550px;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="slides" id="slides">
+            <!-- Slide 1: Notebook Page for Text -->
+            <div class="slide">
+                <div class="notebook-page">
+                    <div class="notebook-text">
+                        I know how much I've continuously kept hurting you and I've realized everything, but that was before I ruined myself, right? I want to make you feel like how we both felt again during those old times. Genuinely, I want to treat you like that again. I've been struggling so much trying to keep myself together so I could change, in a way that'd make you feel like how I really did back then. I've decided to just keep on improving myself until I'm finally worthy for you again.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Notebook Page for Another Text -->
+            <div class="slide">
+                <div class="notebook-page">
+                    <div class="notebook-text">
+                        Every moment spent with you is a memory I'll treasure forever. I just want to make things right and prove that I'm worthy of your love. I’ll keep improving myself for you, and no matter how long it takes, I’ll make sure that I’ll be the person you truly deserve.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Picture with Memorable Moment -->
+            <div class="slide">
+                <div class="notebook-page">
+                    <div class="notebook-text">
+                        Our memorable moments, always with me in my heart.
+                        <img src="https://via.placeholder.com/600x400" alt="Memory" style="margin-top: 20px; border-radius: 10px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="buttons">
+            <button onclick="moveSlide(-1)">&#10094; Prev</button>
+            <button onclick="moveSlide(1)">Next &#10095;</button>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="dots">
+            <div class="dot" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+
+            updateSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            const slides = document.getElementById('slides');
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
